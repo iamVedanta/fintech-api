@@ -2300,3 +2300,21 @@ def calculate_diluted_eps(
         }
     except:
         return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#endpoint for PEG ratio
+@app.get(
+    "/peg",
+    tags=["peg_ratio"],
+    description="Calculate PEG ratio",
+)
+def peg_ratio(share_price: float, earnings_per_share: float, earnings_growth_rate: float):
+    try:
+        calculated_peg = functions.peg_ratio(share_price,earnings_per_share,earnings_growth_rate)
+        return {
+        "Tag": "PEG ratio",
+        "Share Price": share_price,
+        "Earnings per Share(EPS)": earnings_per_share,
+        "Earnings Growth(EPS growth)": earnings_growth_rate,
+         "PEG ratio": calculated_peg,
+        }
+    except:
+        return HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
