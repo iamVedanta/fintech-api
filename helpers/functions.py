@@ -1263,3 +1263,9 @@ yearly_interest_rates:float
 def diluted_eps(net_income, weighted_avg_shares, dilutive_securities):
     diluted_eps = net_income / (weighted_avg_shares + dilutive_securities)
     return diluted_eps
+
+
+#Function to calculate PEG ratio
+def peg_ratio(share_price: float, earnings_per_share: float, earnings_growth_rate: float):
+    ratio = (share_price/earnings_per_share)/earnings_growth_rate
+    return ratio
